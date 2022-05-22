@@ -26,9 +26,11 @@ let dragStartIndex;
 createList();
 
 // Insert list items into DOM
-
 function createList() {
     [...bestJrpgs]
+      .map (a => ({ value: a, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(a => a.value)
       .forEach((person, index) => {
           const listItem = document.createElement('li');
 
@@ -41,5 +43,9 @@ function createList() {
             <i class="fas fa-grip-lines">
           </div>
           `;
+
+          listItems.push(listItem);
+
+          draggable_list.appendChild(listItem);
       });
 }
